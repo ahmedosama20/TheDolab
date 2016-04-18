@@ -37,15 +37,6 @@ public class DolabMainViewActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayout horizontal = (LinearLayout) findViewById(R.id.LinearView);
-
-        ImageView card = (ImageView) findViewById(R.id.imageVieww);
-        //card.setImageBitmap(GetBitmapFromImage("blue.png"));
-        //horizontal.addView(card);
-
-        TextView text = new TextView(this);
-        text.setText("text");
-        horizontal.addView(text);
     }
 
     private Bitmap GetBitmapFromImage(String name) {
