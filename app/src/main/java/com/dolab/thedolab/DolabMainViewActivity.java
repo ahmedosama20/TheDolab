@@ -1,5 +1,8 @@
 package com.dolab.thedolab;
 
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +12,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class DolabMainViewActivity extends AppCompatActivity {
 
@@ -28,8 +37,31 @@ public class DolabMainViewActivity extends AppCompatActivity {
             }
         });
 
+        LinearLayout horizontal = (LinearLayout) findViewById(R.id.LinearView);
+
+        ImageView card = (ImageView) findViewById(R.id.imageVieww);
+        //card.setImageBitmap(GetBitmapFromImage("blue.png"));
+        //horizontal.addView(card);
+
+        TextView text = new TextView(this);
+        text.setText("text");
+        horizontal.addView(text);
+    }
+
+    private Bitmap GetBitmapFromImage(String name) {
+        AssetManager assetManager = this.getAssets();
+        InputStream stream = null;
+
+        try {
+            stream = assetManager.open(name);
+            return BitmapFactory.decodeStream(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
