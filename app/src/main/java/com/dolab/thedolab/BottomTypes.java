@@ -10,13 +10,13 @@ public enum BottomTypes {
         switch(x)
         {
             case 0 :
-                return SHORT
+                return SHORT;
             case 1:
-                return JEANS
+                return JEANS;
             case 2:
-                return SKIRT
+                return SKIRT;
             case 3 :
-                return PANTS
+                return PANTS;
                             
                     
             
