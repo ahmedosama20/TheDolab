@@ -19,11 +19,8 @@ public enum ShoeTypes {
                 return CLASICSHOE;
             case 4 :
                 return BOOT;
-                    
-            
-            
+            default:
+                return null;
         }
-        
-        
     }
 }

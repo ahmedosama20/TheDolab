@@ -11,6 +11,22 @@ import java.util.Vector;
  */
 public class Outfit {
     Vector<Integer> topsIDs;
-    int bottomsIDs;
-    int shoesIDs;
+    int bottomsID;
+    int shoesID;
+
+    public int getBottomID() {
+        return bottomsID;
+    }
+
+    public  int getShoeID() {
+        return shoesID;
+    }
+
+    public int getTopCount() {
+        return topsIDs.size();
+    }
+
+    public int getTopID(int i) {
+        return topsIDs.get(i);
+    }
 }

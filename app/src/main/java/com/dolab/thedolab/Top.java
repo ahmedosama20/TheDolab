@@ -14,6 +14,10 @@ public class Top extends Clothes {
         Type = type;
     }
 
+    public String getType() {
+        return Type.name();
+    }
+
     public void addToDB(Context context) {
         DBHandler myHandler = new DBHandler(context);
         myHandler.addTop(this);

@@ -6,12 +6,27 @@ package com.dolab.thedolab;
 public class Clothes {
     int ID;
     String Note;
-    byte[] Image;
     int ColorID;
+
     public Clothes(String note, int colorID){
         ID = 0;
         Note = note;
-        Image = image;
         ColorID = colorID;
+    }
+
+    public void setID(int id) {
+        ID = id;
+    }
+
+    public int getID(){
+        return ID;
+    }
+
+    public String getNote() {
+        return Note;
+    }
+
+    public int getColor() {
+        return ColorID;
     }
 }

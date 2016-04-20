@@ -9,4 +9,8 @@ public class Bottom extends Clothes {
         super(note, colorID);
         Type = type;
     }
+
+    public String getType() {
+        return Type.name();
+    }
 }

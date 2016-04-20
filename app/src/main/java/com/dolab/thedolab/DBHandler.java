@@ -178,7 +178,7 @@ public class DBHandler extends SQLiteOpenHelper {
                         break;
                 }
                 Top top = new Top(type, cursor.getString(2), cursor.getInt(3));
-                top.setId(id);
+                top.setID(id);
 
                 // Adding contact to list
                 topList.add(top);
@@ -214,7 +214,7 @@ public class DBHandler extends SQLiteOpenHelper {
                         break;
                 }
                 Bottom bottom = new Bottom(type, cursor.getString(2), cursor.getInt(3));
-                bottom.setId(id);
+                bottom.setID(id);
 
                 // Adding contact to list
                 bottomList.add(bottom);
@@ -253,7 +253,7 @@ public class DBHandler extends SQLiteOpenHelper {
                         break;
                 }
                 Shoes shoes = new Shoes(type, cursor.getString(2), cursor.getInt(3));
-                shoes.setId(id);
+                shoes.setID(id);
 
                 // Adding contact to list
                 shoeList.add(shoes);
