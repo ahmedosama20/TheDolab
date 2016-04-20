@@ -32,4 +32,8 @@ public class Clothes {
      public void addToDB(Context context) {
        
     }
+     public ArrayList< Clothes > getAll(Context context)
+     {
+         
+     }
 }
