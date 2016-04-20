@@ -12,12 +12,12 @@ public class Controller extends Application {
     {
     }
    
-    public void addClothes(int id,int type, String note, int colorID)
+    public void addClothes(int id,int type, String note, int colorID, Context context)
     {
         
         ClothesFactory Factory= new ClothesFactory();
        clothes= Factory.CreateClothes( id,  type,  note,  colorID);
-       clothes.addToDB();
+       clothes.addToDB(Context);
        
         
         
