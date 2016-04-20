@@ -22,7 +22,7 @@ public class Top extends Clothes {
         DBHandler myHandler = new DBHandler(context);
         myHandler.addTop(this);
     }
-    public ArrayList< Clothes > getTops(Context context)
+    public ArrayList< Clothes > getAll(Context context)
     {
         DBHandler myHandler = new DBHandler(context);
        return myHandler.getAllTops(this);
