@@ -1,5 +1,7 @@
 package com.dolab.thedolab;
 
+import android.content.Context;
+
 /**
  * Created by OmarAbdulRahman on 4/20/16.
  */
@@ -13,6 +15,7 @@ public class Bottom extends Clothes {
     public String getType() {
         return Type.name();
     }
+<<<<<<< Updated upstream
      public void addToDB(Context context) {
         DBHandler myHandler = new DBHandler(context);
         myHandler.addTop(this);
@@ -21,5 +24,11 @@ public class Bottom extends Clothes {
     {
         DBHandler myHandler = new DBHandler(context);
        return myHandler.getAllBottoms(this);
+=======
+
+    public void addToDB(Context context) {
+        DBHandler myHandler = new DBHandler(context);
+        myHandler.addBottom(this);
+>>>>>>> Stashed changes
     }
 }
