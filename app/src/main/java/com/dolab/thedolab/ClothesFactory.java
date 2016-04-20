@@ -4,14 +4,14 @@ package com.dolab.thedolab;
  * Created by OmarAbdulRahman on 4/20/16.
  */
 public class ClothesFactory {
-    public Clothes CreateClothes(int id, String note, byte[] image, int colorID) {
+    public Clothes CreateClothes(int id, int type, String note, int colorID) {
         switch (id) {
             case 0:
-                return new Top(note,  colorID);
+                return new Top(TopTypes.toEnum( type), String note, int colorID);
             case 1:
-                return new Bottom(note,  colorID);
+                return new Bottom(BottomTypes.toEnum(type), String note, int colorID);
             case 2:
-                return new Shoes(note,  colorID);
+                return new Shoes(ShoesTypes.toEnum(type), String note, int colorID;
             default:
                 return null;
         }
