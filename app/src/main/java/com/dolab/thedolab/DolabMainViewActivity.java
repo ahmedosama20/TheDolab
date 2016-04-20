@@ -39,21 +39,6 @@ public class DolabMainViewActivity extends AppCompatActivity {
 
     }
 
-    private Bitmap GetBitmapFromImage(String name) {
-        AssetManager assetManager = this.getAssets();
-        InputStream stream = null;
-
-        try {
-            stream = assetManager.open(name);
-            return BitmapFactory.decodeStream(stream);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
