@@ -10,14 +10,14 @@ public class Controller extends Application {
     
     public Controller()
     {
-        
-        
     }
-   CreateClothes( TopTypes type, String note, int colorID)
+   
+    public void addClothes(int id,int type, String note, int colorID)
     {
-        ClothesFactory Factory= new ClothesFactory();
-       clothes= Factory.CreateClothes( id,  note,  image,  colorID)
         
+        ClothesFactory Factory= new ClothesFactory();
+       clothes= Factory.CreateClothes( id,  type,  note,  colorID);
+       
         
         
     }
