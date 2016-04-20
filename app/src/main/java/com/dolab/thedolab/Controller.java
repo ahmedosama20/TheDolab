@@ -13,6 +13,7 @@ public class Controller extends Application {
     
     public Controller()
     {
+
     }
    
     public void addClothes(int id,int type, String note, int colorID, Context context)
@@ -28,7 +29,7 @@ public class Controller extends Application {
        clothes.addToDB(context);
        
     }
-    public getListAdapter(context context, int resource)
+    public MyListAdapter getListAdapter(context context, int resource)
     {
          ArrayList< Clothes > ClothesArray = clothes.getAll(context);
          MyListAdapter adapter = new MyListAdapter(context,resource,ClothesArray);

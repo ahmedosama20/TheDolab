@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 /**
  * Created by OmarAbdulRahman on 4/20/16.
  */
@@ -22,9 +24,9 @@ public class Top extends Clothes {
         DBHandler myHandler = new DBHandler(context);
         myHandler.addTop(this);
     }
-    public ArrayList< Clothes > getAll(Context context)
+    public ArrayList< Top > getAll(Context context)
     {
         DBHandler myHandler = new DBHandler(context);
-       return myHandler.getAllTops(this);
+       return myHandler.getAllTops();
     }
 }

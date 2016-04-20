@@ -2,6 +2,8 @@ package com.dolab.thedolab;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+
 /**
  * Created by OmarAbdulRahman on 4/20/16.
  */
@@ -15,20 +17,14 @@ public class Bottom extends Clothes {
     public String getType() {
         return Type.name();
     }
-<<<<<<< Updated upstream
-     public void addToDB(Context context) {
-        DBHandler myHandler = new DBHandler(context);
-        myHandler.addTop(this);
-    }
-     public ArrayList< Clothes > getAll(Context context)
-    {
-        DBHandler myHandler = new DBHandler(context);
-       return myHandler.getAllBottoms(this);
-=======
+
+     public ArrayList< Bottom > getAll(Context context) {
+         DBHandler myHandler = new DBHandler(context);
+         return myHandler.getAllBottoms();
+     }
 
     public void addToDB(Context context) {
         DBHandler myHandler = new DBHandler(context);
         myHandler.addBottom(this);
->>>>>>> Stashed changes
     }
 }

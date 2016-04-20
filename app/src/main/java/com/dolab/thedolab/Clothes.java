@@ -29,11 +29,6 @@ public class Clothes {
     public int getColor() {
         return ColorID;
     }
-     public void addToDB(Context context) {
-       
-    }
-     public ArrayList< Clothes > getAll(Context context)
-     {
-         
-     }
+
+
 }
