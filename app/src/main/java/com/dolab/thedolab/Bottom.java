@@ -5,8 +5,8 @@ package com.dolab.thedolab;
  */
 public class Bottom extends Clothes {
     BottomTypes Type;
-    public Bottom(BottomTypes type, String note, byte[] image, int colorID){
-        super(note, image, colorID);
+    public Bottom(BottomTypes type, String note, int colorID){
+        super(note, colorID);
         Type = type;
     }
 }

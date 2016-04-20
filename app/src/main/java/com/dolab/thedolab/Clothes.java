@@ -8,7 +8,7 @@ public class Clothes {
     String Note;
     byte[] Image;
     int ColorID;
-    public Clothes(String note, byte[] image, int colorID){
+    public Clothes(String note, int colorID){
         ID = 0;
         Note = note;
         Image = image;

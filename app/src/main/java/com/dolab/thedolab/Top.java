@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class Top extends Clothes {
     TopTypes Type;
-    public Top(TopTypes type, String note, byte[] image, int colorID){
-        super(note, image, colorID);
+    public Top(TopTypes type, String note, int colorID){
+        super(note, colorID);
         Type = type;
     }
 

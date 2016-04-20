@@ -5,8 +5,8 @@ package com.dolab.thedolab;
  */
 public class Shoes extends Clothes {
     ShoeTypes Type;
-    public Shoes(ShoeTypes type ,String note, byte[] image, int colorID){
-        super(note, image, colorID);
+    public Shoes(ShoeTypes type ,String note, int colorID){
+        super(note, colorID);
         Type = type;
     }
 }
