@@ -17,4 +17,9 @@ public class Shoes extends Clothes {
         DBHandler myHandler = new DBHandler(context);
         myHandler.addTop(this);
     }
+     public ArrayList< Clothes > getShoes(Context context)
+    {
+        DBHandler myHandler = new DBHandler(context);
+       return myHandler.getAllShoes(this);
+    }
 }
