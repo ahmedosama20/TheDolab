@@ -15,12 +15,16 @@ public class Controller extends Application {
     public void addClothes(int id,int type, String note, int colorID, Context context)
     {
         
-        ClothesFactory Factory= new ClothesFactory();
+       ClothesFactory Factory= new ClothesFactory();
        clothes= Factory.CreateClothes( id,  type,  note,  colorID);
-       clothes.addToDB(Context);
+       clothes.addToDB(context);
        
-        
-        
+    }
+    public getListAdapter(Context context, int resource)
+    {
+         ArrayList< Clothes > ClothesArray = clothes.getAll(context);
+         MyListAdapter adapter = new MyListAdapter(context,resource,ClothesArray);
+         
     }
 
 }
