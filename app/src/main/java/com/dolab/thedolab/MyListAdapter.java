@@ -34,7 +34,7 @@ public class MyListAdapter extends ArrayAdapter<Top> {
         TextView topname = (TextView) convertView.findViewById(R.id.textView);
         ImageView topimage = (ImageView) convertView.findViewById(R.id.imageView);
 
-        topname.setText(mytop.getName());
+        topname.setText(mytop.getNote());
         topimage.setImageBitmap(BitmapFactory.decodeByteArray(mytop.gett_image(),0,mytop.gett_image().length));
 
         return convertView;

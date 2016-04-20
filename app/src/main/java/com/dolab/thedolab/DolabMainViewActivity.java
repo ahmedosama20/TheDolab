@@ -108,7 +108,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
         public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             DBHandler db = new DBHandler(getActivity().getApplicationContext());
-            MyListAdapter adapter = new MyListAdapter(getActivity().getApplicationContext(),R.layout.row_item,db.getAllTops());
+            MyListAdapter adapter = new MyListAdapter(getActivity().getApplicationContext(),R.layout.upper_list_item,db.getAllTops());
             ListView topslistview = (ListView)getView().findViewById(R.id.listView);
             Drawable d = getResources().getDrawable(R.drawable.image); // the drawable (Captain Obvious, to the rescue!!!)
             Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
