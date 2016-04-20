@@ -4,7 +4,7 @@ package com.dolab.thedolab;
  * Created by OmarAbdulRahman on 4/20/16.
  */
 public enum ShoeTypes {
-    SNEAKERS, FLIPFLOP, SANDAL, CLASICSHOE, BOOT
+    SNEAKERS, FLIPFLOP, SANDAL, CLASICSHOE, BOOT;
     public static ShoeTypes toEnum(int x)
     {
         switch(x)
