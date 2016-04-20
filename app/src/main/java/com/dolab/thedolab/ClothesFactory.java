@@ -7,11 +7,11 @@ public class ClothesFactory {
     public Clothes CreateClothes(int id, String note, byte[] image, int colorID) {
         switch (id) {
             case 0:
-                return new Top(note, image, colorID);
+                return new Top(note,  colorID);
             case 1:
-                return new Bottom(note, image, colorID);
+                return new Bottom(note,  colorID);
             case 2:
-                return new Shoes(note, image, colorID);
+                return new Shoes(note,  colorID);
             default:
                 return null;
         }
