@@ -7,5 +7,19 @@ import android.app.Application;
  */
 public class Controller extends Application {
     Clothes clothes;
+    
+    public Controller()
+    {
+        
+        
+    }
+   CreateClothes( TopTypes type, String note, int colorID)
+    {
+        ClothesFactory Factory= new ClothesFactory();
+       clothes= Factory.CreateClothes( id,  note,  image,  colorID)
+        
+        
+        
+    }
 
 }
