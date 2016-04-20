@@ -17,6 +17,7 @@ public class Controller extends Application {
         
         ClothesFactory Factory= new ClothesFactory();
        clothes= Factory.CreateClothes( id,  type,  note,  colorID);
+       clothes.addClothes();
        
         
         
