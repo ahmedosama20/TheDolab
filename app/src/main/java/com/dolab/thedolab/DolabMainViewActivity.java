@@ -68,8 +68,11 @@ public class DolabMainViewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
             }
         });
+
+
 
     }
 
@@ -105,10 +108,9 @@ public class DolabMainViewActivity extends AppCompatActivity {
         public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             int sec = getArguments().getInt(ARG_SECTION_NUMBER);
-           // MyListAdapter adapter = controller.getListAdapter(getActivity().getApplicationContext(),R.layout.upper_list_item, getResources(), sec);
+            MyListAdapter adapter = controller.getListAdapter(getActivity().getApplicationContext(),R.layout.upper_list_item, getResources(), sec);
             ListView topslistview = (ListView)getView().findViewById(R.id.listView);
-           // topslistview.setAdapter(adapter);
-
+            topslistview.setAdapter(adapter);
         }
 
         /**
@@ -117,11 +119,17 @@ public class DolabMainViewActivity extends AppCompatActivity {
          */
 
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private int mPosition;
 
         public PlaceholderFragment() {
             controller=Controller.getInstance();
         }
 
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            mPosition = getArguments().getInt(ARG_SECTION_NUMBER);
+        }
         /**
          * Returns a new instance of this fragment for the given section
          * number.
@@ -159,7 +167,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position);
         }
 
         @Override

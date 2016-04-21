@@ -54,9 +54,21 @@ public class DBHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()) {
+            // Enable foreign key constraints
+            db.execSQL("PRAGMA foreign_keys=ON;");
+            //(OR)
+            db.setForeignKeyConstraintsEnabled (true);
+        }
+    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("PRAGMA foreign_keys=ON;");
+
         String CREATE_TOPS_TABLE = "CREATE TABLE " + TABLE_TOPS + " ("
                 + TOP_ID + " INTEGER PRIMARY key autoincrement, " + TOP_TYPE + " TEXT, "
                 + TOP_NOTE + " TEXT, " + TOP_COLOR + " INTEGER" + ");";
@@ -72,15 +84,16 @@ public class DBHandler extends SQLiteOpenHelper {
                 + SHOE_NOTE + " TEXT, " + SHOE_COLOR + " INTEGER" + ");";
         db.execSQL(CREATE_SHOES_TABLE);
 
+
         String CREATE_OUTFIT_TABLE = "CREATE TABLE " + TABLE_OUTFIT + " ("
                 + OUTFIT_ID + " INTEGER PRIMARY key autoincrement, "
-                + BOTTOM_ID + " INTEGER " + "FOREIGN KEY REFRENCES " + TABLE_BOTTOMS + " ( " + BOTTOM_ID + " ) ON DELETE CASCADE, "
-                + SHOE_ID + " INTEGER " + "FOREIGN KEY REFRENCES " + TABLE_SHOES + " ( " + SHOE_ID + " ) ON DELETE CASCADE " +  ");";
+                + BOTTOM_ID + " INTEGER REFERENCES " + TABLE_BOTTOMS + " ON DELETE CASCADE, "
+                + SHOE_ID + " INTEGER REFERENCES " + TABLE_SHOES + " ON DELETE CASCADE " +  ");";
         db.execSQL(CREATE_OUTFIT_TABLE);
 
         String CREATE_OUTFIT_TOP_TABLE = "CREATE TABLE " + TABLE_OUTFIT_TOP + " ("
-                + OUTFIT_ID + " INTEGER " + "FOREIGN KEY REFRENCES " + TABLE_OUTFIT + " ( " + OUTFIT_ID + " ) ON DELETE CASCADE, "
-                + TOP_ID + " INTEGER " + "FOREIGN KEY REFRENCES " + TABLE_TOPS + " ( " + TOP_ID + " ) ON DELETE CASCADE, "
+                + OUTFIT_ID + " INTEGER REFERENCES " + TABLE_OUTFIT + " ON DELETE CASCADE, "
+                + TOP_ID + " INTEGER REFERENCES " + TABLE_TOPS + " ON DELETE CASCADE, "
                 + "PRIMARY KEY ( " + OUTFIT_ID + ", " + TOP_ID + " ) " + ");";
         db.execSQL(CREATE_OUTFIT_TOP_TABLE);
 

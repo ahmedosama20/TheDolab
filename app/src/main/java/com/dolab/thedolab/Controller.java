@@ -31,19 +31,22 @@ public class Controller extends Application {
        clothes= Factory.CreateClothes( id,  type,  note,  colorID);
        clothes.addToDB(context);
     }
-    public MyListAdapter getListAdapter(Context context, int resource,Resources res,int id)
+    public MyListAdapter getListAdapter(Context context, int resource, Resources res, int id)
     {
-        clothes=new Clothes();
+        //clothes=new Clothes;
         ArrayList< Clothes > ClothesArray;
         switch(id)
         {
             case 0 :
+                clothes = new Top();
                  ClothesArray = ((Top)clothes).getAll(context);
                 break;
             case 1 :
-                 ClothesArray = ((Bottom)clothes).getAll(context);
+                clothes = new Bottom();
+                ClothesArray = ((Bottom)clothes).getAll(context);
                 break;
             case 2 :
+                clothes = new Shoes();
                 ClothesArray = ((Shoes)clothes).getAll(context);
                 break;
             default:
