@@ -12,6 +12,8 @@ public class Clothes {
     String Note;
     int ColorID;
 
+    public Clothes() {}
+
     public Clothes(String note, int colorID){
         ID = 0;
         Note = note;

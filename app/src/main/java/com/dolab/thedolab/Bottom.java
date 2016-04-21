@@ -9,6 +9,10 @@ import java.util.ArrayList;
  */
 public class Bottom extends Clothes {
     BottomTypes Type;
+    public Bottom()
+    {
+    
+    }
     public Bottom(BottomTypes type, String note, int colorID){
         super(note, colorID);
         Type = type;

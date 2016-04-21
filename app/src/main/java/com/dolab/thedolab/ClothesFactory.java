@@ -7,11 +7,11 @@ public class ClothesFactory {
     public Clothes CreateClothes(int id, int type, String note, int colorID) {
         switch (id) {
             case 0:
-                return new Top(TopTypes.toEnum(type), String note, int colorID);
+                return new Top(TopTypes.toEnum( type),  note,  colorID);
             case 1:
-                return new Bottom(BottomTypes.toEnum(type), String note, int colorID);
+                return new Bottom(BottomTypes.toEnum(type), note,  colorID);
             case 2:
-                return new Shoes(ShoesTypes.toEnum(type), String note, int colorID);
+                return new Shoes(ShoeTypes.toEnum(type), note,  colorID);
             default:
                 return null;
         }
