@@ -30,10 +30,10 @@ public class Controller extends Application {
        clothes= Factory.CreateClothes( id,  type,  note,  colorID);
        clothes.addToDB(context);
     }
-    public MyListAdapter getListAdapter(Context context, int resource)
+    public MyListAdapter getListAdapter(Context context, int resource,Resources res)
     {
          ArrayList< Clothes > ClothesArray = clothes.getAll(context);
-         MyListAdapter adapter = new MyListAdapter(context,resource,ClothesArray);
+         MyListAdapter adapter = new MyListAdapter(context, resource, ClothesArray, res);
     }
     
 
