@@ -2,6 +2,7 @@ package com.dolab.thedolab;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Resources;
 
 import java.util.ArrayList;
 
@@ -26,14 +27,14 @@ public class Controller extends Application {
    
     public void addClothes(int id,int type, String note, int colorID, Context context)
     {
-        ClothesFactory Factory= new ClothesFactory();
+       ClothesFactory Factory= new ClothesFactory();
        clothes= Factory.CreateClothes( id,  type,  note,  colorID);
        clothes.addToDB(context);
     }
     public MyListAdapter getListAdapter(Context context, int resource,Resources res)
     {
          ArrayList< Clothes > ClothesArray = clothes.getAll(context);
-         MyListAdapter adapter = new MyListAdapter(context, resource, ClothesArray, res);
+         return new MyListAdapter(context, resource, ClothesArray, res);
     }
     
 

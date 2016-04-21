@@ -29,6 +29,7 @@ import java.io.ByteArrayOutputStream;
 
 public class DolabMainViewActivity extends AppCompatActivity {
 
+    Controller controller;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -48,7 +49,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dolab_main_view);
-        Controller controller=Controller.getInstance();
+        controller=Controller.getInstance();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -99,17 +100,12 @@ public class DolabMainViewActivity extends AppCompatActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
-
+        Controller controller;
         @Override
         public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             int sec = getArguments().getInt(ARG_SECTION_NUMBER);
-            switch (sec) {
-                case 0:
-                    
-            }
-            DBHandler db = new DBHandler(getActivity().getApplicationContext());
-            MyListAdapter adapter = controller.getListAdapter(getActivity().getApplicationContext(),R.layout.upper_list_item,db.getAllTops(), getResources());
+            MyListAdapter adapter = controller.getListAdapter(getActivity().getApplicationContext(),R.layout.upper_list_item, getResources(), sec);
             ListView topslistview = (ListView)getView().findViewById(R.id.listView);
             topslistview.setAdapter(adapter);
 
@@ -122,7 +118,9 @@ public class DolabMainViewActivity extends AppCompatActivity {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public PlaceholderFragment() {}
+        public PlaceholderFragment() {
+            controller=Controller.getInstance();
+        }
 
         /**
          * Returns a new instance of this fragment for the given section
