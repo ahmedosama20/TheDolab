@@ -109,7 +109,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
                     
             }
             DBHandler db = new DBHandler(getActivity().getApplicationContext());
-            MyListAdapter adapter = new MyListAdapter(getActivity().getApplicationContext(),R.layout.upper_list_item,db.getAllTops(), getResources());
+            MyListAdapter adapter = controller.getListAdapter(getActivity().getApplicationContext(),R.layout.upper_list_item,db.getAllTops(), getResources());
             ListView topslistview = (ListView)getView().findViewById(R.id.listView);
             topslistview.setAdapter(adapter);
 
