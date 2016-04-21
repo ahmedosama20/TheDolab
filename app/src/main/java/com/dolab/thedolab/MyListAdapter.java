@@ -94,11 +94,11 @@ public class MyListAdapter extends ArrayAdapter<Clothes> {
                 break;
         }
         Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] bitmapdata = stream.toByteArray();
-        Bitmap bitmap1 = BitmapFactory.decodeByteArray(bitmapdata,0,bitmapdata.length);
-        topimage.setImageBitmap(bitmap1);
+        //ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        //bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        //byte[] bitmapdata = stream.toByteArray();
+        //Bitmap bitmap1 = BitmapFactory.decodeByteArray(bitmapdata,0,bitmapdata.length);
+        topimage.setImageBitmap(bitmap);
 
         return convertView;
     }

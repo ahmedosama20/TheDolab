@@ -73,6 +73,8 @@ public class DolabMainViewActivity extends AppCompatActivity {
         });
 
 
+        //controller.addClothes(0, 1, "note", 10, getApplicationContext());
+
 
     }
 
