@@ -19,49 +19,49 @@ import java.util.ArrayList;
 /**
  * Created by Mario on 4/20/2016.
  */
-public class MyListAdapter extends ArrayAdapter<Top> {
+public class MyListAdapter extends ArrayAdapter<Clothes> {
     Context context;
     int resource;
     Resources Res;
-    ArrayList<Top> mytops = new ArrayList<Top>();
-    public MyListAdapter(Context context, int resource, ArrayList<Top> mytops, Resources res) {
-        super(context, resource, mytops);
+    ArrayList<Clothes> myClothes = new ArrayList<Clothes>();
+    public MyListAdapter(Context context, int resource, ArrayList<Clothes> myclothes, Resources res) {
+        super(context, resource, myclothes);
         this.resource = resource;
         this.context = context;
-        this.mytops = mytops;
+        this.myClothes = myclothes;
         Res = res;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Top mytop = mytops.get(position);
+        Clothes myPiece = myClothes.get(position);
 
         convertView = LayoutInflater.from(context).inflate(R.layout.upper_list_item,parent,false);
 
         TextView topname = (TextView) convertView.findViewById(R.id.textView);
         ImageView topimage = (ImageView) convertView.findViewById(R.id.imageView);
 
-        topname.setText(mytop.getNote());
+        topname.setText(myPiece.getNote());
 
         Drawable d = null;
-        switch (mytop.getType()) {
+        switch (myPiece.getType()) {
             case "TSHIRT":
                 d = Res.getDrawable(R.drawable.tshirt);
                 break;
             case "SWEATSHIRT":
-                d = Res.getDrawable(R.drawable.SWEATSHIRT);
+                d = Res.getDrawable(R.drawable.sweatshirt);
                 break;
             case "JACKET":
-                d = Res.getDrawable(R.drawable.JACKET);
+                d = Res.getDrawable(R.drawable.jacket);
                 break;
             case "SHIRT":
-                d = Res.getDrawable(R.drawable.SHIRT);
+                d = Res.getDrawable(R.drawable.shirt);
                 break;
             case "BLOUSE":
-                d = Res.getDrawable(R.drawable.BLOUSE);
+                d = Res.getDrawable(R.drawable.blouse);
                 break;
             case "CARDIGAN":
-                d = Res.getDrawable(R.drawable.CARDIGAN);
+                d = Res.getDrawable(R.drawable.cardigan);
                 break;
         }
         Bitmap bitmap = ((BitmapDrawable)d).getBitmap();

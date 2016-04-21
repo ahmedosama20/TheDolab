@@ -16,15 +16,19 @@ public class Top extends Clothes {
         Type = type;
     }
 
+    @Override
     public String getType() {
         return Type.name();
     }
 
+    @Override
     public void addToDB(Context context) {
         DBHandler myHandler = new DBHandler(context);
         myHandler.addTop(this);
     }
-    public ArrayList< Top > getAll(Context context)
+
+    @Override
+    public ArrayList< Clothes > getAll(Context context)
     {
         DBHandler myHandler = new DBHandler(context);
        return myHandler.getAllTops();

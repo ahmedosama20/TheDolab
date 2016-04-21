@@ -26,22 +26,14 @@ public class Controller extends Application {
    
     public void addClothes(int id,int type, String note, int colorID, Context context)
     {
-
         ClothesFactory Factory= new ClothesFactory();
        clothes= Factory.CreateClothes( id,  type,  note,  colorID);
        clothes.addToDB(context);
-
-        
-       ClothesFactory Factory= new ClothesFactory();
-       clothes= Factory.CreateClothes( id,  type,  note,  colorID);
-       clothes.addToDB(context);
-       
     }
-    public MyListAdapter getListAdapter(context context, int resource)
+    public MyListAdapter getListAdapter(Context context, int resource)
     {
          ArrayList< Clothes > ClothesArray = clothes.getAll(context);
          MyListAdapter adapter = new MyListAdapter(context,resource,ClothesArray);
-         
     }
     
 

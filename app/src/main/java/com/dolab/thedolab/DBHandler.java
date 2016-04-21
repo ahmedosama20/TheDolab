@@ -146,8 +146,8 @@ public class DBHandler extends SQLiteOpenHelper {
         return -1;
     }
 
-    public ArrayList<Top> getAllTops() {
-        ArrayList<Top> topList = new ArrayList<Top>();
+    public ArrayList<Clothes> getAllTops() {
+        ArrayList<Clothes> topList = new ArrayList<Clothes>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_TOPS;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -188,8 +188,8 @@ public class DBHandler extends SQLiteOpenHelper {
         return topList;
     }
 
-    public ArrayList<Bottom> getAllBottoms() {
-        ArrayList<Bottom> bottomList = new ArrayList<Bottom>();
+    public ArrayList<Clothes> getAllBottoms() {
+        ArrayList<Clothes> bottomList = new ArrayList<Clothes>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_BOTTOMS;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -224,8 +224,8 @@ public class DBHandler extends SQLiteOpenHelper {
         return bottomList;
     }
 
-    public ArrayList<Shoes> getAllShoes() {
-        ArrayList<Shoes> shoeList = new ArrayList<Shoes>();
+    public ArrayList<Clothes> getAllShoes() {
+        ArrayList<Clothes> shoeList = new ArrayList<Clothes>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_SHOES;
         SQLiteDatabase db = this.getWritableDatabase();
