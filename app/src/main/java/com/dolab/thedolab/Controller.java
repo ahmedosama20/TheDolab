@@ -10,10 +10,18 @@ import java.util.ArrayList;
  */
 public class Controller extends Application {
     Clothes clothes;
-    
+    private static Controller controller=null;
     public Controller()
     {
 
+    }
+    public static Controller getInstance()
+    {
+        if(controller==null)
+        {
+        controller = new controller();
+        }
+        return controller;
     }
    
     public void addClothes(int id,int type, String note, int colorID, Context context)
@@ -35,5 +43,6 @@ public class Controller extends Application {
          MyListAdapter adapter = new MyListAdapter(context,resource,ClothesArray);
          
     }
+    
 
 }
