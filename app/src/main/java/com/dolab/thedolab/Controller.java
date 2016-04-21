@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Controller extends Application {
     Clothes clothes;
     private static Controller controller=null;
-    public Controller()
+    protected Controller()
     {
 
     }
