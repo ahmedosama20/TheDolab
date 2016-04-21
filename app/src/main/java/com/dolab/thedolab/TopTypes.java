@@ -21,11 +21,8 @@ public enum TopTypes {
                 return BLOUSE;
             case 5:
                 return CARDIGAN;
-                            
-                    
-            
-            
-            
+            default:
+                return null;
         }
         
         
