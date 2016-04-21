@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 public class Bottom extends Clothes {
     BottomTypes Type;
+    //test
     public Bottom()
     {
     
