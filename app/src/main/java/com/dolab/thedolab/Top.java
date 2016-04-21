@@ -11,7 +11,10 @@ import java.util.ArrayList;
  */
 public class Top extends Clothes {
     TopTypes Type;
-    public Top();
+    public Top()
+    {
+        
+    }
     public Top(TopTypes type, String note, int colorID){
         super(note, colorID);
         Type = type;
