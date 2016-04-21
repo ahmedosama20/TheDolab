@@ -105,9 +105,9 @@ public class DolabMainViewActivity extends AppCompatActivity {
         public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             int sec = getArguments().getInt(ARG_SECTION_NUMBER);
-            MyListAdapter adapter = controller.getListAdapter(getActivity().getApplicationContext(),R.layout.upper_list_item, getResources(), sec);
+           // MyListAdapter adapter = controller.getListAdapter(getActivity().getApplicationContext(),R.layout.upper_list_item, getResources(), sec);
             ListView topslistview = (ListView)getView().findViewById(R.id.listView);
-            topslistview.setAdapter(adapter);
+           // topslistview.setAdapter(adapter);
 
         }
 
