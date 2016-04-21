@@ -17,7 +17,8 @@ public enum BottomTypes {
                 return SKIRT;
             case 3 :
                 return PANTS;
-                            
+            default:
+                return null;
                     
             
             

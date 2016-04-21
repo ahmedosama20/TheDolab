@@ -19,7 +19,7 @@ public class Controller extends Application {
     {
         if(controller==null)
         {
-        controller = new controller();
+        controller = new Controller();
         }
         return controller;
     }

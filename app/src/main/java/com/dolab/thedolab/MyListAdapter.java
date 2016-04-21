@@ -63,6 +63,33 @@ public class MyListAdapter extends ArrayAdapter<Clothes> {
             case "CARDIGAN":
                 d = Res.getDrawable(R.drawable.cardigan);
                 break;
+            case "SHORT":
+                d = Res.getDrawable(R.drawable.shorrt);
+                break;
+            case "JEANS":
+                d = Res.getDrawable(R.drawable.jeans);
+                break;
+            case "SKIRT":
+                d = Res.getDrawable(R.drawable.skirt);
+                break;
+            case "PANTS":
+                d = Res.getDrawable(R.drawable.pants);
+                break;
+            case "SNEAKERS":
+                d = Res.getDrawable(R.drawable.sneakers);
+                break;
+            case "FLIPFLOP":
+                d = Res.getDrawable(R.drawable.flipflops);
+                break;
+            case "SANDAL":
+                d = Res.getDrawable(R.drawable.sandal);
+                break;
+            case "CLASICSHOE":
+                d = Res.getDrawable(R.drawable.clasicshoe);
+                break;
+            case "BOOT":
+                d = Res.getDrawable(R.drawable.boot);
+                break;
         }
         Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
