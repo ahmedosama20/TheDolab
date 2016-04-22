@@ -42,8 +42,13 @@ public class MyListAdapter extends ArrayAdapter<Clothes> {
 
         TextView topname = (TextView) convertView.findViewById(R.id.textView);
         ImageView topimage = (ImageView) convertView.findViewById(R.id.imageView);
+        ImageView topcolor = (ImageView) convertView.findViewById(R.id.imageView2);
 
         topname.setText(myPiece.getNote());
+
+        switch (myPiece.getColor()){
+            //check for colors you need in the box by int
+        }
 
         Drawable d = null;
         switch (myPiece.getType()) {
