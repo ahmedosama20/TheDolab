@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">TheDolab</string>
     <string name="action_settings">Settings</string>
+    <string-array name="colors_array">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Yellow</item>
+        <item>Pink</item>
+        <item>Purple</item>
+        <item>Brown</item>
+        <item>Black</item>
+        <item>White</item>
+    </string-array>
 </resources>
