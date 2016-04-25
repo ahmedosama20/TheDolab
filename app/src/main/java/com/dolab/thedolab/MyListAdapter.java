@@ -10,6 +10,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,14 @@ public class MyListAdapter extends ArrayAdapter<Clothes> {
         this.context = context;
         this.myClothes = myclothes;
         Res = res;
+    }
+
+    public void changeEntry(int id){
+        for (int x = 0 ; x < myClothes.size() ; x++)
+        {
+            if (myClothes.get(x).getID() == id);
+                //myClothes.get(x); here set the change in the item itself then restart activity;
+        }
     }
 
     @Override
@@ -106,5 +115,6 @@ public class MyListAdapter extends ArrayAdapter<Clothes> {
         topimage.setImageBitmap(bitmap);
 
         return convertView;
+
     }
 }
