@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -137,9 +138,16 @@ public class DolabMainViewActivity extends AppCompatActivity {
         @Override
         public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            MyListAdapter adapter = controller.getListAdapter(getActivity().getApplicationContext(), R.layout.upper_list_item, getResources(), mPosition);
+            int sec = getArguments().getInt(ARG_SECTION_NUMBER);
+            final MyListAdapter adapter = controller.getListAdapter(getActivity().getApplicationContext(), R.layout.upper_list_item, getResources(), sec);
             ListView topslistview = (ListView) getView().findViewById(R.id.listView);
             topslistview.setAdapter(adapter);
+            topslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //adapter.getItemId(position); //in here use the id to edit in database
+
+                }
+            });
         }
 
         /**
