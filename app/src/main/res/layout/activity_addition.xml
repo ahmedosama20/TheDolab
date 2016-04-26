@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.dolab.thedolab.AdditionActivity">
+    tools:context="com.dolab.thedolab.AdditionActivity"
+    android:background="@color/background_material_light">
 
     <EditText
         android:layout_width="fill_parent"
@@ -18,15 +19,19 @@
         android:layout_above="@+id/addButton"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="39dp"
-        android:maxHeight="85dp" />
+        android:maxHeight="85dp"
+        android:autoText="false"
+        android:maxLength="255" />
 
     <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
         android:id="@+id/addclothesScrollView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp" />
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_below="@+id/textView4">
+
+    </HorizontalScrollView>
 
     <Spinner
         android:layout_width="fill_parent"
@@ -68,6 +73,7 @@
         android:text="Add"
         android:id="@+id/addButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick ="onClick"/>
 
 </RelativeLayout>
