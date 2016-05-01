@@ -27,9 +27,10 @@ public class Controller extends Application {
    
     public void addClothes(int id,int type, String note, int colorID, Context context)
     {
-       ClothesFactory Factory= new ClothesFactory();
-       clothes= Factory.CreateClothes( id,  type,  note,  colorID);
-       clothes.addToDB(context);
+        ClothesFactory Factory= new ClothesFactory();
+        clothes= Factory.CreateClothes( id,  type,  note,  colorID);
+        clothes.addToDB(context);
+
     }
     public MyListAdapter getListAdapter(Context context, int resource, Resources res, int id)
     {
@@ -53,8 +54,8 @@ public class Controller extends Application {
                 return null;
             
         }
-        
-         return new MyListAdapter(context, resource, ClothesArray, res);
+
+        return new MyListAdapter(context, resource, ClothesArray, res);
     }
     
 

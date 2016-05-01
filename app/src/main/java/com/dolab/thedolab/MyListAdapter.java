@@ -34,7 +34,10 @@ public class MyListAdapter extends ArrayAdapter<Clothes> {
         this.myClothes = myclothes;
         Res = res;
     }
-
+   // public void addToArray(Clothes clothT){
+    //   myClothes.add(clothT);
+    //    this.notifyDataSetChanged();
+    //}
     public void changeEntry(int id){
         for (int x = 0 ; x < myClothes.size() ; x++)
         {

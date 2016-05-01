@@ -126,6 +126,7 @@ public class AdditionActivity extends AppCompatActivity {
     }
 
     //Button onClick;
+
     public void onClick(View view) {
         if(selectedPicture == -1)
         {
@@ -138,6 +139,7 @@ public class AdditionActivity extends AppCompatActivity {
         }
         else {
             controller.addClothes(section, selectedPicture, ((EditText)findViewById(R.id.addClothesComment)).getText().toString(), ((Spinner)findViewById(R.id.ColorSpinner)).getSelectedItemPosition(), getApplicationContext());
+
             finish();
         }
     }

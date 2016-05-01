@@ -1,4 +1,5 @@
 package com.dolab.thedolab;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -68,6 +69,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab){
                 mPosition = tab.getPosition();
+                mViewPager.setCurrentItem(tab.getPosition());
 
             }
 
@@ -78,8 +80,9 @@ public class DolabMainViewActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                mPosition = tab.getPosition();
             }
+
         });
 
 
@@ -133,21 +136,34 @@ public class DolabMainViewActivity extends AppCompatActivity {
      */
     public static class PlaceholderFragment extends Fragment {
         Controller controller;
-
+        MyListAdapter adapter;
+        ListView topslistview;
 
         @Override
         public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             int sec = getArguments().getInt(ARG_SECTION_NUMBER);
-            final MyListAdapter adapter = controller.getListAdapter(getActivity().getApplicationContext(), R.layout.upper_list_item, getResources(), sec);
-            ListView topslistview = (ListView) getView().findViewById(R.id.listView);
+            adapter = controller.getListAdapter(getActivity().getApplicationContext(), R.layout.upper_list_item, getResources(), sec);
+
+            topslistview = (ListView) getView().findViewById(R.id.listView);
             topslistview.setAdapter(adapter);
+
+
             topslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //adapter.getItemId(position); //in here use the id to edit in database
 
                 }
             });
+
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            adapter = controller.getListAdapter(getActivity().getApplicationContext(),R.layout.upper_list_item,getResources(),getArguments().getInt(ARG_SECTION_NUMBER));
+            //adapter.notifyDataSetChanged();
+            topslistview.setAdapter(adapter);
         }
 
         /**
@@ -165,7 +181,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-          //  mPosition = getArguments().getInt(ARG_SECTION_NUMBER);
+            //mPosition = getArguments().getInt(ARG_SECTION_NUMBER);
         }
 
         /**
