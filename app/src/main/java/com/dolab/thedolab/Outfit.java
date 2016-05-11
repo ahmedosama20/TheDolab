@@ -10,7 +10,7 @@ import java.util.Vector;
  * Created by OmarAbdulRahman on 4/20/16.
  */
 public class Outfit {
-    Vector<Integer> topsIDs;
+    int topsID;
     int bottomsID;
     int shoesID;
 
@@ -22,11 +22,7 @@ public class Outfit {
         return shoesID;
     }
 
-    public int getTopCount() {
-        return topsIDs.size();
-    }
-
-    public int getTopID(int i) {
-        return topsIDs.get(i);
+    public int getTopID() {
+        return topsID;
     }
 }
