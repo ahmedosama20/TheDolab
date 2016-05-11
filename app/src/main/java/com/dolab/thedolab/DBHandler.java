@@ -88,14 +88,10 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_OUTFIT_TABLE = "CREATE TABLE " + TABLE_OUTFIT + " ("
                 + OUTFIT_ID + " INTEGER PRIMARY key autoincrement, "
                 + BOTTOM_ID + " INTEGER REFERENCES " + TABLE_BOTTOMS + " ON DELETE CASCADE, "
+                + TOP_ID + " INTEGER REFERENCES " + TABLE_TOPS + " ON DELETE CASCADE, "
                 + SHOE_ID + " INTEGER REFERENCES " + TABLE_SHOES + " ON DELETE CASCADE " +  ");";
         db.execSQL(CREATE_OUTFIT_TABLE);
 
-        String CREATE_OUTFIT_TOP_TABLE = "CREATE TABLE " + TABLE_OUTFIT_TOP + " ("
-                + OUTFIT_ID + " INTEGER REFERENCES " + TABLE_OUTFIT + " ON DELETE CASCADE, "
-                + TOP_ID + " INTEGER REFERENCES " + TABLE_TOPS + " ON DELETE CASCADE, "
-                + "PRIMARY KEY ( " + OUTFIT_ID + ", " + TOP_ID + " ) " + ");";
-        db.execSQL(CREATE_OUTFIT_TOP_TABLE);
 
     }
 
@@ -137,27 +133,17 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(SHOE_ID, outfit.getShoeID());
         values.put(BOTTOM_ID, outfit.getBottomID());
+        values.put(TOP_ID,outfit.getTopID());
         // Inserting Row
         db.insert(TABLE_OUTFIT, null, values);
-
-        int outfitID = getLastID(db);
-        for (int i=0; i<outfit.getTopCount(); i++) {
-            ContentValues values1 = new ContentValues();
-            values1.put(OUTFIT_ID, outfitID);
-            values1.put(TOP_ID, outfit.getTopID(i));
-            db.insert(TABLE_OUTFIT_TOP, null, values1);
-        }
-        db.close(); // Closing database connection
+        db.close();
+        //// Closing database connection
+        //test
     }
 
-    int getLastID(SQLiteDatabase db) {
-        String query = "SELECT " + OUTFIT_ID + " From " + TABLE_OUTFIT + " ORDER BY " + OUTFIT_ID + " DESC LIMIT 1;" ;
-        Cursor cursor = db.rawQuery(query, null);
-        if(cursor.moveToFirst()){
-            return cursor.getInt(0);
-        }
-        return -1;
-    }
+
+
+
 
     public ArrayList<Clothes> getAllTops() {
         ArrayList<Clothes> topList = new ArrayList<Clothes>();
@@ -198,6 +184,7 @@ public class DBHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         // return contact list
+        db.close();
         return topList;
     }
 
@@ -234,8 +221,11 @@ public class DBHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         // return contact list
+        db.close();
         return bottomList;
     }
+
+
 
     public ArrayList<Clothes> getAllShoes() {
         ArrayList<Clothes> shoeList = new ArrayList<Clothes>();
@@ -273,6 +263,7 @@ public class DBHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         // return contact list
+        db.close();
         return shoeList;
     }
 
