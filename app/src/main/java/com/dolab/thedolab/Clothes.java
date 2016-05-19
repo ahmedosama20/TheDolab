@@ -24,6 +24,8 @@ public class Clothes {
         ID = id;
     }
 
+    public void setColorID(int colorID){ColorID = colorID;}
+
     public int getID(){
         return ID;
     }

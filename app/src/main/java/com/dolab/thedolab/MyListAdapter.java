@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.LightingColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.res.ResourcesCompat;
@@ -57,12 +59,45 @@ public class MyListAdapter extends ArrayAdapter<Clothes> {
         ImageView topcolor = (ImageView) convertView.findViewById(R.id.imageView2);
 
         topname.setText(myPiece.getNote());
-
+        Drawable f = Res.getDrawable(R.drawable.white, null);
+        Bitmap bitmapf = ((BitmapDrawable)f).getBitmap();
+        topcolor.setImageBitmap(bitmapf);
         switch (myPiece.getColor()){
-            //check for colors you need in the box by int
+            case 0:
+                topcolor.setColorFilter(new LightingColorFilter(Color.RED, Color.RED));
+                break;
+            case 1:
+                topcolor.setColorFilter(new LightingColorFilter(Color.GREEN, Color.GREEN));
+                break;
+            case 2:
+                topcolor.setColorFilter(new LightingColorFilter(Color.BLUE, Color.BLUE));
+                break;
+            case 3:
+                topcolor.setColorFilter(new LightingColorFilter(Color.YELLOW, Color.YELLOW));
+                break;
+            case 4:
+                topcolor.setColorFilter(new LightingColorFilter(16737380, 16737380));
+                break;
+            case 5:
+                topcolor.setColorFilter(new LightingColorFilter(16711935, 16711935));
+                break;
+            case 6:
+                topcolor.setColorFilter(new LightingColorFilter(10824234, 10824234));
+                break;
+            case 7:
+                topcolor.setColorFilter(new LightingColorFilter(Color.BLACK, Color.BLACK));
+                break;
+            case 8:
+                topcolor.setColorFilter(new LightingColorFilter(Color.WHITE, Color.WHITE));
+                break;
+            default:
+                Drawable la = Res.getDrawable(R.drawable.laun, null);
+                Bitmap bitmapla = ((BitmapDrawable)la).getBitmap();
+                topcolor.setImageBitmap(bitmapla);
         }
 
         Drawable d = null;
+
         switch (myPiece.getType()) {
             case "TSHIRT":
                 d = Res.getDrawable(R.drawable.tshirt, null);

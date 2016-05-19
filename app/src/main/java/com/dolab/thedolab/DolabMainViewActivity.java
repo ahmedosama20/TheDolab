@@ -139,6 +139,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
         Controller controller;
         MyListAdapter adapter;
         ListView topslistview;
+        DBHandler dEdit;
 
         @Override
         public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -146,6 +147,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
             int sec = getArguments().getInt(ARG_SECTION_NUMBER);
             adapter = controller.getListAdapter(getActivity().getApplicationContext(), R.layout.upper_list_item, getResources(), sec);
             Button addOutfit;
+            dEdit = new DBHandler(getActivity().getApplicationContext());
             addOutfit = (Button) getView().findViewById(R.id.button);
             topslistview = (ListView) getView().findViewById(R.id.listView);
             topslistview.setAdapter(adapter);
@@ -158,8 +160,15 @@ public class DolabMainViewActivity extends AppCompatActivity {
             });
             topslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //adapter.getItemId(position); //in here use the id to edit in database
-
+                    int test = adapter.getItem(position).getColor();
+                    if (test >= 100){
+                        adapter.getItem(position).setColorID(test-100);
+                    }
+                    else{
+                        adapter.getItem(position).setColorID(test+100);
+                    }
+                    adapter.notifyDataSetChanged();
+                    dEdit.addToLaun(adapter.getItem(position).getID(),getArguments().getInt(ARG_SECTION_NUMBER)+1,adapter.getItem(position).getColor());
                 }
             });
 

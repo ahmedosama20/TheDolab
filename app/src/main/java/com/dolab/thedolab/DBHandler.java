@@ -105,7 +105,31 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_TOPS, null, values);
         db.close(); // Closing database connection
     }
+    //public void update_byID(int id, String v1, String v2){
+       // ContentValues values = new ContentValues();
+       // values.put(KEY_CONTENT1, v1);
+       // values.put(KEY_CONTENT2, v2);
+      //  sqLiteDatabase.update(MYDATABASE_TABLE, values, KEY_ID+"="+id, null);
+    //}
+    public void addToLaun(int editingid,int tap,int newcolor) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        if(tap == 1){
+            values.put(TOP_COLOR,newcolor);
+            db.update(TABLE_TOPS, values, TOP_ID+"="+editingid, null);
+        }
+        if(tap == 2){
+            values.put(BOTTOM_COLOR,newcolor);
+            db.update(TABLE_BOTTOMS, values, BOTTOM_ID+"="+editingid, null);
 
+        }
+        if(tap == 3){
+            values.put(SHOE_COLOR,newcolor);
+            db.update(TABLE_SHOES, values, SHOE_ID+"="+editingid, null);
+        }
+
+        db.close(); // Closing database connection
+    }
     public void addBottom(Bottom bottom) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
