@@ -86,12 +86,19 @@ public class DolabMainViewActivity extends AppCompatActivity {
 
         });
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton ran = (FloatingActionButton) findViewById(R.id.ran);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 myOnClick(view);
+            }
+        });
+        ran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent x = new Intent(getApplicationContext(), ShowOutfits.class);
+                startActivity(x);
             }
         });
 

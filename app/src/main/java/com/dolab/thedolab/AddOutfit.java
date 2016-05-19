@@ -26,7 +26,7 @@ public class AddOutfit extends AppCompatActivity {
         listCount = 0;
         controller = Controller.getInstance();
         myhandler = new DBHandler(AddOutfit.this);
-        adding = new Outfit();
+
         adapter = controller.getListAdapter(this, R.layout.upper_list_item, getResources(), listCount);
         listview = (ListView) findViewById(R.id.listView2);
         listview.setAdapter(adapter);
@@ -35,9 +35,7 @@ public class AddOutfit extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (listCount == 2){
                     shoeid = adapter.getItem(position).getID();
-                    adding.topsID = topid;
-                    adding.bottomsID = bottomid;
-                    adding.shoesID = shoeid;
+                    adding = new Outfit(0,topid,bottomid,shoeid);
                     myhandler.addOutfit(adding);
                     Intent toMain = new Intent(AddOutfit.this,DolabMainViewActivity.class);
                     startActivity(toMain);

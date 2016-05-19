@@ -212,6 +212,32 @@ public class DBHandler extends SQLiteOpenHelper {
         return topList;
     }
 
+    public ArrayList<Outfit> getAllOutfits() {
+        ArrayList<Outfit> outList = new ArrayList<Outfit>();
+        // Select All Query
+        String selectQuery = "SELECT * FROM " + TABLE_OUTFIT;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery,null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                int bottomid = cursor.getInt(1);
+                int topid = cursor.getInt(2);
+                int shoeid = cursor.getInt(3);
+                Outfit tempy = new Outfit(id,topid,bottomid,shoeid);
+
+
+
+
+                outList.add(tempy);
+            } while (cursor.moveToNext());
+        }
+        // return contact list
+        db.close();
+        return outList;
+    }
+
     public ArrayList<Clothes> getAllBottoms() {
         ArrayList<Clothes> bottomList = new ArrayList<Clothes>();
         // Select All Query
