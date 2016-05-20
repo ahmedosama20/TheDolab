@@ -1,11 +1,18 @@
 package com.dolab.thedolab;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.LightingColorFilter;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,6 +24,7 @@ public class ShowOutfits extends AppCompatActivity {
     ImageView shoeImage;
     ImageView shoeColor;
     Button randomGen;
+    Button realRandom;
     DBHandler outfiter;
     ArrayList<Outfit> outfitsSource;
     int indexer;
@@ -31,9 +39,32 @@ public class ShowOutfits extends AppCompatActivity {
         shoeImage = (ImageView) findViewById(R.id.imageView5);
         shoeColor = (ImageView) findViewById(R.id.imageView8);
         randomGen = (Button) findViewById(R.id.button2);
+        realRandom = (Button) findViewById(R.id.button3);
         outfiter = new DBHandler(getApplicationContext());
         indexer = 0;
         outfitsSource = outfiter.getAllOutfits();
+        realRandom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Outfit tempS;
+                tempS = outfiter.ISIS();
+                if (tempS.getTopID() == -1 || tempS.getBottomID() == -1 || tempS.getShoeID() == -1)
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "روح شوف امك عايزة إيه";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                else
+                {
+                    setTop(tempS.getTopID());
+                    setBottom(tempS.getBottomID());
+                    setShoe(tempS.getShoeID());
+                }
+            }
+        });
         randomGen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,14 +83,193 @@ public class ShowOutfits extends AppCompatActivity {
     }
     public void setTop(int topid){
 
-            //db function to return top
-            //breaking the top to it's data and show it
+            Top shower = outfiter.getTopById(topid);
 
+        Drawable f = getResources().getDrawable(R.drawable.white, null);
+        Bitmap bitmapf = ((BitmapDrawable)f).getBitmap();
+        topColor.setImageBitmap(bitmapf);
+        switch (shower.getColor()){
+            case 0:
+                topColor.setColorFilter(new LightingColorFilter(Color.RED, Color.RED));
+                break;
+            case 1:
+                topColor.setColorFilter(new LightingColorFilter(Color.GREEN, Color.GREEN));
+                break;
+            case 2:
+                topColor.setColorFilter(new LightingColorFilter(Color.BLUE, Color.BLUE));
+                break;
+            case 3:
+                topColor.setColorFilter(new LightingColorFilter(Color.YELLOW, Color.YELLOW));
+                break;
+            case 4:
+                topColor.setColorFilter(new LightingColorFilter(16737380, 16737380));
+                break;
+            case 5:
+                topColor.setColorFilter(new LightingColorFilter(16711935, 16711935));
+                break;
+            case 6:
+                topColor.setColorFilter(new LightingColorFilter(10824234, 10824234));
+                break;
+            case 7:
+                topColor.setColorFilter(new LightingColorFilter(Color.BLACK, Color.BLACK));
+                break;
+            case 8:
+                topColor.setColorFilter(new LightingColorFilter(Color.WHITE, Color.WHITE));
+                break;
+            default:
+                Drawable la = getResources().getDrawable(R.drawable.laun, null);
+                Bitmap bitmapla = ((BitmapDrawable)la).getBitmap();
+                topColor.setImageBitmap(bitmapla);
+        }
+        Drawable d = null;
 
-
+        switch (shower.getType()) {
+            case "TSHIRT":
+                d = getResources().getDrawable(R.drawable.tshirt, null);
+                break;
+            case "SWEATSHIRT":
+                d = getResources().getDrawable(R.drawable.sweatshirt, null);
+                break;
+            case "JACKET":
+                d = getResources().getDrawable(R.drawable.jacket, null);
+                break;
+            case "SHIRT":
+                d = getResources().getDrawable(R.drawable.shirt, null);
+                break;
+            case "BLOUSE":
+                d = getResources().getDrawable(R.drawable.blouse, null);
+                break;
+            case "CARDIGAN":
+                d = getResources().getDrawable(R.drawable.cardigan, null);
+                break;
+            case "SHORT":
+                d = getResources().getDrawable(R.drawable.shorrt, null);
+                break;
+            case "JEANS":
+                d = getResources().getDrawable(R.drawable.jeans, null);
+                break;
+            case "SKIRT":
+                d = getResources().getDrawable(R.drawable.skirt, null);
+                break;
+            case "PANTS":
+                d = getResources().getDrawable(R.drawable.pants, null);
+                break;
+            case "SNEAKERS":
+                d = getResources().getDrawable(R.drawable.sneakers, null);
+                break;
+            case "FLIPFLOP":
+                d = getResources().getDrawable(R.drawable.flipflops, null);
+                break;
+            case "SANDAL":
+                d = getResources().getDrawable(R.drawable.sandal, null);
+                break;
+            case "CLASICSHOE":
+                d = getResources().getDrawable(R.drawable.clasicshoe, null);
+                break;
+            case "BOOT":
+                d = getResources().getDrawable(R.drawable.boot, null);
+                break;
+        }
+        Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+        //ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        //bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        //byte[] bitmapdata = stream.toByteArray();
+        //Bitmap bitmap1 = BitmapFactory.decodeByteArray(bitmapdata,0,bitmapdata.length);
+        topImage.setImageBitmap(bitmap);
     }
     public void setBottom(int bottomid){
+        Bottom bot = outfiter.getBottomById(bottomid);
+        Drawable f = getResources().getDrawable(R.drawable.white, null);
+        Bitmap bitmapf = ((BitmapDrawable)f).getBitmap();
+        bottomColor.setImageBitmap(bitmapf);
+        switch (bot.getColor()){
+            case 0:
+                bottomColor.setColorFilter(new LightingColorFilter(Color.RED, Color.RED));
+                break;
+            case 1:
+                bottomColor.setColorFilter(new LightingColorFilter(Color.GREEN, Color.GREEN));
+                break;
+            case 2:
+                bottomColor.setColorFilter(new LightingColorFilter(Color.BLUE, Color.BLUE));
+                break;
+            case 3:
+                bottomColor.setColorFilter(new LightingColorFilter(Color.YELLOW, Color.YELLOW));
+                break;
+            case 4:
+                bottomColor.setColorFilter(new LightingColorFilter(16737380, 16737380));
+                break;
+            case 5:
+                bottomColor.setColorFilter(new LightingColorFilter(16711935, 16711935));
+                break;
+            case 6:
+                bottomColor.setColorFilter(new LightingColorFilter(10824234, 10824234));
+                break;
+            case 7:
+                bottomColor.setColorFilter(new LightingColorFilter(Color.BLACK, Color.BLACK));
+                break;
+            case 8:
+                bottomColor.setColorFilter(new LightingColorFilter(Color.WHITE, Color.WHITE));
+                break;
+            default:
+                Drawable la = getResources().getDrawable(R.drawable.laun, null);
+                Bitmap bitmapla = ((BitmapDrawable)la).getBitmap();
+                bottomColor.setImageBitmap(bitmapla);
+        }
+        Drawable d = null;
 
+        switch (bot.getType()) {
+            case "TSHIRT":
+                d = getResources().getDrawable(R.drawable.tshirt, null);
+                break;
+            case "SWEATSHIRT":
+                d = getResources().getDrawable(R.drawable.sweatshirt, null);
+                break;
+            case "JACKET":
+                d = getResources().getDrawable(R.drawable.jacket, null);
+                break;
+            case "SHIRT":
+                d = getResources().getDrawable(R.drawable.shirt, null);
+                break;
+            case "BLOUSE":
+                d = getResources().getDrawable(R.drawable.blouse, null);
+                break;
+            case "CARDIGAN":
+                d = getResources().getDrawable(R.drawable.cardigan, null);
+                break;
+            case "SHORT":
+                d = getResources().getDrawable(R.drawable.shorrt, null);
+                break;
+            case "JEANS":
+                d = getResources().getDrawable(R.drawable.jeans, null);
+                break;
+            case "SKIRT":
+                d = getResources().getDrawable(R.drawable.skirt, null);
+                break;
+            case "PANTS":
+                d = getResources().getDrawable(R.drawable.pants, null);
+                break;
+            case "SNEAKERS":
+                d = getResources().getDrawable(R.drawable.sneakers, null);
+                break;
+            case "FLIPFLOP":
+                d = getResources().getDrawable(R.drawable.flipflops, null);
+                break;
+            case "SANDAL":
+                d = getResources().getDrawable(R.drawable.sandal, null);
+                break;
+            case "CLASICSHOE":
+                d = getResources().getDrawable(R.drawable.clasicshoe, null);
+                break;
+            case "BOOT":
+                d = getResources().getDrawable(R.drawable.boot, null);
+                break;
+        }
+        Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+        //ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        //bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        //byte[] bitmapdata = stream.toByteArray();
+        //Bitmap bitmap1 = BitmapFactory.decodeByteArray(bitmapdata,0,bitmapdata.length);
+        bottomImage.setImageBitmap(bitmap);
 
 
 
@@ -67,8 +277,98 @@ public class ShowOutfits extends AppCompatActivity {
 
     }
     public void setShoe(int shoeid){
+        Shoes bot = outfiter.getShoeById(shoeid);
+        Drawable f = getResources().getDrawable(R.drawable.white, null);
+        Bitmap bitmapf = ((BitmapDrawable)f).getBitmap();
+        shoeColor.setImageBitmap(bitmapf);
+        switch (bot.getColor()){
+            case 0:
+                shoeColor.setColorFilter(new LightingColorFilter(Color.RED, Color.RED));
+                break;
+            case 1:
+                shoeColor.setColorFilter(new LightingColorFilter(Color.GREEN, Color.GREEN));
+                break;
+            case 2:
+                shoeColor.setColorFilter(new LightingColorFilter(Color.BLUE, Color.BLUE));
+                break;
+            case 3:
+                shoeColor.setColorFilter(new LightingColorFilter(Color.YELLOW, Color.YELLOW));
+                break;
+            case 4:
+                shoeColor.setColorFilter(new LightingColorFilter(16737380, 16737380));
+                break;
+            case 5:
+                shoeColor.setColorFilter(new LightingColorFilter(16711935, 16711935));
+                break;
+            case 6:
+                shoeColor.setColorFilter(new LightingColorFilter(10824234, 10824234));
+                break;
+            case 7:
+                shoeColor.setColorFilter(new LightingColorFilter(Color.BLACK, Color.BLACK));
+                break;
+            case 8:
+                shoeColor.setColorFilter(new LightingColorFilter(Color.WHITE, Color.WHITE));
+                break;
+            default:
+                Drawable la = getResources().getDrawable(R.drawable.laun, null);
+                Bitmap bitmapla = ((BitmapDrawable)la).getBitmap();
+                shoeColor.setImageBitmap(bitmapla);
+        }
+        Drawable d = null;
 
-
+        switch (bot.getType()) {
+            case "TSHIRT":
+                d = getResources().getDrawable(R.drawable.tshirt, null);
+                break;
+            case "SWEATSHIRT":
+                d = getResources().getDrawable(R.drawable.sweatshirt, null);
+                break;
+            case "JACKET":
+                d = getResources().getDrawable(R.drawable.jacket, null);
+                break;
+            case "SHIRT":
+                d = getResources().getDrawable(R.drawable.shirt, null);
+                break;
+            case "BLOUSE":
+                d = getResources().getDrawable(R.drawable.blouse, null);
+                break;
+            case "CARDIGAN":
+                d = getResources().getDrawable(R.drawable.cardigan, null);
+                break;
+            case "SHORT":
+                d = getResources().getDrawable(R.drawable.shorrt, null);
+                break;
+            case "JEANS":
+                d = getResources().getDrawable(R.drawable.jeans, null);
+                break;
+            case "SKIRT":
+                d = getResources().getDrawable(R.drawable.skirt, null);
+                break;
+            case "PANTS":
+                d = getResources().getDrawable(R.drawable.pants, null);
+                break;
+            case "SNEAKERS":
+                d = getResources().getDrawable(R.drawable.sneakers, null);
+                break;
+            case "FLIPFLOP":
+                d = getResources().getDrawable(R.drawable.flipflops, null);
+                break;
+            case "SANDAL":
+                d = getResources().getDrawable(R.drawable.sandal, null);
+                break;
+            case "CLASICSHOE":
+                d = getResources().getDrawable(R.drawable.clasicshoe, null);
+                break;
+            case "BOOT":
+                d = getResources().getDrawable(R.drawable.boot, null);
+                break;
+        }
+        Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+        //ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        //bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        //byte[] bitmapdata = stream.toByteArray();
+        //Bitmap bitmap1 = BitmapFactory.decodeByteArray(bitmapdata,0,bitmapdata.length);
+        shoeImage.setImageBitmap(bitmap);
 
 
 

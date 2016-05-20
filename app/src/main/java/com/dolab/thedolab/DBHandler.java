@@ -12,7 +12,7 @@ import com.dolab.thedolab.Shoes;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
+/* db.rawQuery("SELECT * FROM $#^#$^#^# ORDER BY RANDOM() LIMIT 1", null); */
 public class DBHandler extends SQLiteOpenHelper {
     // Database Version
     private static final int DATABASE_VERSION = 1;
@@ -95,6 +95,45 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
+    public Outfit ISIS()
+    {
+        Outfit tempo;
+        int t;int b;int s;
+        String selectQuery = "SELECT "+ TOP_ID +" FROM " + TABLE_TOPS + " ORDER BY RANDOM() LIMIT 1";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor1 = db.rawQuery(selectQuery, null);
+        if(cursor1!=null && cursor1.getCount()>0 && cursor1.moveToFirst()){
+            t = cursor1.getInt(0);}
+        else{
+            tempo = new Outfit(-1,-1,-1,-1);
+            db.close();
+            return tempo;
+        }
+        selectQuery = "SELECT "+ BOTTOM_ID +" FROM " + TABLE_BOTTOMS + " ORDER BY RANDOM() LIMIT 1";
+        Cursor cursor2 = db.rawQuery(selectQuery, null);
+        if(cursor2!=null && cursor2.getCount()>0 && cursor2.moveToFirst()){
+            b = cursor2.getInt(0);}
+        else{
+            tempo = new Outfit(-1,-1,-1,-1);
+            db.close();
+            return tempo;
+        }
+        selectQuery = "SELECT "+ SHOE_ID +" FROM " + TABLE_SHOES + " ORDER BY RANDOM() LIMIT 1";
+        Cursor cursor3 = db.rawQuery(selectQuery, null);
+        if(cursor3!=null && cursor3.getCount()>0 && cursor3.moveToFirst()){
+            s = cursor3.getInt(0);}
+        else{
+            tempo = new Outfit(-1,-1,-1,-1);
+            db.close();
+            return tempo;
+        }
+        tempo = new Outfit(1,t,b,s);
+        db.close();
+        return tempo;
+
+
+
+    }
     public void addTop(Top top) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -236,6 +275,108 @@ public class DBHandler extends SQLiteOpenHelper {
         // return contact list
         db.close();
         return outList;
+    }
+    public Top getTopById(int searchId) {
+        Top showy;
+        String selectQuery = "SELECT * FROM " + TABLE_TOPS + " WHERE " + TOP_ID + " = " + String.valueOf(searchId);
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+
+            int id = cursor.getInt(0);
+            TopTypes type = null;
+            switch (cursor.getString(1)) {
+                case "TSHIRT":
+                    type = TopTypes.TSHIRT;
+                    break;
+                case "SWEATSHIRT":
+                    type = TopTypes.SWEATSHIRT;
+                    break;
+                case "JACKET":
+                    type = TopTypes.JACKET;
+                    break;
+                case "SHIRT":
+                    type = TopTypes.SHIRT;
+                    break;
+                case "BLOUSE":
+                    type = TopTypes.BLOUSE;
+                    break;
+                case "CARDIGAN":
+                    type = TopTypes.CARDIGAN;
+                    break;
+            }
+            showy = new Top(type, cursor.getString(2), cursor.getInt(3));
+            showy.setID(id);
+            db.close();
+            return showy;
+        }
+
+        return null;
+    }
+    public Bottom getBottomById(int searchId) {
+        Bottom showy;
+        String selectQuery = "SELECT * FROM " + TABLE_BOTTOMS + " WHERE " + BOTTOM_ID + " = " + String.valueOf(searchId);
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+
+            int id = cursor.getInt(0);
+            BottomTypes type = null;
+            switch (cursor.getString(1)) {
+                case "SHORT":
+                    type = BottomTypes.SHORT;
+                    break;
+                case "JEANS":
+                    type = BottomTypes.JEANS;
+                    break;
+                case "SKIRT":
+                    type = BottomTypes.SKIRT;
+                    break;
+                case "PANTS":
+                    type = BottomTypes.PANTS;
+                    break;
+            }
+            showy = new Bottom(type, cursor.getString(2), cursor.getInt(3));
+            showy.setID(id);
+            db.close();
+            return showy;
+        }
+
+        return null;
+    }
+    public Shoes getShoeById(int searchId) {
+        Shoes showy;
+        String selectQuery = "SELECT * FROM " + TABLE_SHOES + " WHERE " + SHOE_ID + " = " + String.valueOf(searchId);
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+
+            int id = cursor.getInt(0);
+            ShoeTypes type = null;
+            switch (cursor.getString(1)) {
+                case "SNEAKERS":
+                    type = ShoeTypes.SNEAKERS;
+                    break;
+                case "FLIPFLOP":
+                    type = ShoeTypes.FLIPFLOP;
+                    break;
+                case "SANDAL":
+                    type = ShoeTypes.SANDAL;
+                    break;
+                case "CLASICSHOE":
+                    type = ShoeTypes.CLASICSHOE;
+                    break;
+                case "BOOT":
+                    type = ShoeTypes.BOOT;
+                    break;
+            }
+            showy = new Shoes(type, cursor.getString(2), cursor.getInt(3));
+            showy.setID(id);
+            db.close();
+            return showy;
+        }
+
+        return null;
     }
 
     public ArrayList<Clothes> getAllBottoms() {
