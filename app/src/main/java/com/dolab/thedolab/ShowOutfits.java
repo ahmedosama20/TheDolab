@@ -1,6 +1,7 @@
 package com.dolab.thedolab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
@@ -25,9 +26,22 @@ public class ShowOutfits extends AppCompatActivity {
     ImageView shoeColor;
     Button randomGen;
     Button realRandom;
+    Button before;
+    Button deleter;
+    int trueindexer;
     DBHandler outfiter;
+    boolean clicky;
     ArrayList<Outfit> outfitsSource;
     int indexer;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent toMain = new Intent(ShowOutfits.this,DolabMainViewActivity.class);
+        startActivity(toMain);
+        System.exit(0);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +54,45 @@ public class ShowOutfits extends AppCompatActivity {
         shoeColor = (ImageView) findViewById(R.id.imageView8);
         randomGen = (Button) findViewById(R.id.button2);
         realRandom = (Button) findViewById(R.id.button3);
+        before = (Button) findViewById(R.id.button4);
+        deleter = (Button) findViewById(R.id.button);
+        clicky = false;
         outfiter = new DBHandler(getApplicationContext());
         indexer = 0;
+        trueindexer = 0;
         outfitsSource = outfiter.getAllOutfits();
+        before.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int size = outfitsSource.size();
+                if (indexer < 0)
+                    indexer = size-1;
+                if (indexer == size && size >= 2)
+                    indexer = size-2;
+                if (indexer == size && size < 2)
+                    indexer = 0;
+                if (size > 0) {
+                    setTop(outfitsSource.get(indexer).getTopID());
+                    setBottom(outfitsSource.get(indexer).getBottomID());
+                    setShoe(outfitsSource.get(indexer).getShoeID());
+                    indexer--;
+                    trueindexer = indexer + 1;
+                    clicky = true;
+                }
+
+            }
+
+        });
+        deleter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clicky){
+                outfiter.deleteOutById(outfitsSource.get(trueindexer).id);
+                Intent ree = new Intent(ShowOutfits.this,ShowOutfits.class);
+                startActivity(ree);
+                System.exit(0);}
+            }
+        });
         realRandom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,19 +112,29 @@ public class ShowOutfits extends AppCompatActivity {
                     setTop(tempS.getTopID());
                     setBottom(tempS.getBottomID());
                     setShoe(tempS.getShoeID());
+                    clicky = false;
                 }
+
             }
         });
+
         randomGen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (indexer == outfitsSource.size())
+                int size = outfitsSource.size();
+                if (indexer == size)
                     indexer = 0;
-                if (outfitsSource.size() > 0) {
+                if (indexer < 0 && size > 1)
+                    indexer = 1;
+                if (indexer < 0 && size == 1)
+                    indexer = 0;
+                if (size > 0) {
                     setTop(outfitsSource.get(indexer).getTopID());
                     setBottom(outfitsSource.get(indexer).getBottomID());
                     setShoe(outfitsSource.get(indexer).getShoeID());
                     indexer++;
+                    trueindexer = indexer - 1 ;
+                    clicky = true;
                 }
 
             }
@@ -117,6 +177,7 @@ public class ShowOutfits extends AppCompatActivity {
                 topColor.setColorFilter(new LightingColorFilter(Color.WHITE, Color.WHITE));
                 break;
             default:
+                topColor.clearColorFilter();
                 Drawable la = getResources().getDrawable(R.drawable.laun, null);
                 Bitmap bitmapla = ((BitmapDrawable)la).getBitmap();
                 topColor.setImageBitmap(bitmapla);
@@ -211,6 +272,7 @@ public class ShowOutfits extends AppCompatActivity {
                 bottomColor.setColorFilter(new LightingColorFilter(Color.WHITE, Color.WHITE));
                 break;
             default:
+                bottomColor.clearColorFilter();
                 Drawable la = getResources().getDrawable(R.drawable.laun, null);
                 Bitmap bitmapla = ((BitmapDrawable)la).getBitmap();
                 bottomColor.setImageBitmap(bitmapla);
@@ -310,6 +372,7 @@ public class ShowOutfits extends AppCompatActivity {
                 shoeColor.setColorFilter(new LightingColorFilter(Color.WHITE, Color.WHITE));
                 break;
             default:
+                shoeColor.clearColorFilter();
                 Drawable la = getResources().getDrawable(R.drawable.laun, null);
                 Bitmap bitmapla = ((BitmapDrawable)la).getBitmap();
                 shoeColor.setImageBitmap(bitmapla);

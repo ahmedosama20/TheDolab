@@ -461,4 +461,28 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
+
+    public void deleteOutById(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_OUTFIT +" where " + OUTFIT_ID + " = " + String.valueOf(id));
+        db.close();
+    }
+    public void deleteTopId(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_OUTFIT +" where " + TOP_ID + " = " + String.valueOf(id));
+        db.execSQL("delete from "+ TABLE_TOPS +" where " + TOP_ID + " = " + String.valueOf(id));
+        db.close();
+    }
+    public void deleteBottomId(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_OUTFIT +" where " + BOTTOM_ID + " = " + String.valueOf(id));
+        db.execSQL("delete from "+ TABLE_BOTTOMS +" where " + BOTTOM_ID + " = " + String.valueOf(id));
+        db.close();
+    }
+    public void deleteShoeId(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_OUTFIT +" where " + SHOE_ID + " = " + String.valueOf(id));
+        db.execSQL("delete from "+ TABLE_SHOES +" where " + SHOE_ID + " = " + String.valueOf(id));
+        db.close();
+    }
 }

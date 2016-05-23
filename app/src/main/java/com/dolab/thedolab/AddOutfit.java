@@ -20,6 +20,13 @@ public class AddOutfit extends AppCompatActivity {
     Outfit adding;
     DBHandler myhandler;
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent toMain = new Intent(AddOutfit.this,DolabMainViewActivity.class);
+        startActivity(toMain);
+        System.exit(0);
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_outfit);
@@ -37,8 +44,10 @@ public class AddOutfit extends AppCompatActivity {
                     shoeid = adapter.getItem(position).getID();
                     adding = new Outfit(0,topid,bottomid,shoeid);
                     myhandler.addOutfit(adding);
+
                     Intent toMain = new Intent(AddOutfit.this,DolabMainViewActivity.class);
                     startActivity(toMain);
+                    System.exit(0);
                 }
                 if (listCount == 1){
                     bottomid = adapter.getItem(position).getID();
@@ -55,5 +64,6 @@ public class AddOutfit extends AppCompatActivity {
             }
         });
     }
+
 
 }

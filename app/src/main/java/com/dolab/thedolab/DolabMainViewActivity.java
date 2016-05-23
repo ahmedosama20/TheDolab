@@ -43,7 +43,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
     Controller controller;
     public static int sec;
     public static int mPosition = 0;
-
+    public static boolean delete;
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
@@ -53,6 +53,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dolab_main_view);
         controller = Controller.getInstance();
         //
+        delete = false;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -85,9 +86,15 @@ public class DolabMainViewActivity extends AppCompatActivity {
             }
 
         });
-
+        FloatingActionButton del = (FloatingActionButton) findViewById(R.id.dele);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         FloatingActionButton ran = (FloatingActionButton) findViewById(R.id.ran);
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete = !delete;
+            }
+        });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,10 +106,18 @@ public class DolabMainViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent x = new Intent(getApplicationContext(), ShowOutfits.class);
                 startActivity(x);
+                System.exit(0);
             }
         });
-
-
+        FloatingActionButton newo = (FloatingActionButton) findViewById(R.id.newo);
+        newo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent opener = new Intent(getApplicationContext(),AddOutfit.class);
+                startActivity(opener);
+                System.exit(0);
+            }
+        });
         //controller.addClothes(0, 1, "note", 10, getApplicationContext());
 
 
@@ -153,20 +168,15 @@ public class DolabMainViewActivity extends AppCompatActivity {
             super.onViewCreated(view, savedInstanceState);
             int sec = getArguments().getInt(ARG_SECTION_NUMBER);
             adapter = controller.getListAdapter(getActivity().getApplicationContext(), R.layout.upper_list_item, getResources(), sec);
-            Button addOutfit;
+
             dEdit = new DBHandler(getActivity().getApplicationContext());
-            addOutfit = (Button) getView().findViewById(R.id.button);
+
             topslistview = (ListView) getView().findViewById(R.id.listView);
             topslistview.setAdapter(adapter);
-            addOutfit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent opener = new Intent(getActivity(),AddOutfit.class);
-                    startActivity(opener);
-                }
-            });
+
             topslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (!delete){
                     int test = adapter.getItem(position).getColor();
                     if (test >= 100){
                         adapter.getItem(position).setColorID(test-100);
@@ -175,7 +185,19 @@ public class DolabMainViewActivity extends AppCompatActivity {
                         adapter.getItem(position).setColorID(test+100);
                     }
                     adapter.notifyDataSetChanged();
-                    dEdit.addToLaun(adapter.getItem(position).getID(),getArguments().getInt(ARG_SECTION_NUMBER)+1,adapter.getItem(position).getColor());
+                    dEdit.addToLaun(adapter.getItem(position).getID(),getArguments().getInt(ARG_SECTION_NUMBER)+1,adapter.getItem(position).getColor());}
+                    else
+                    {
+                        if (mPosition == 0)
+                            dEdit.deleteTopId(adapter.getItem(position).getID());
+                        if (mPosition == 1)
+                            dEdit.deleteBottomId(adapter.getItem(position).getID());
+                        if (mPosition == 2)
+                            dEdit.deleteShoeId(adapter.getItem(position).getID());
+                        delete = !delete;
+                        adapter = controller.getListAdapter(getActivity(), R.layout.upper_list_item,getResources(),mPosition);
+                        topslistview.setAdapter(adapter);
+                    }
                 }
             });
 
