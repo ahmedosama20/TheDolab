@@ -22,9 +22,10 @@ public class AddOutfit extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent toMain = new Intent(AddOutfit.this,DolabMainViewActivity.class);
-        startActivity(toMain);
-        System.exit(0);
+        finish();
+        //Intent toMain = new Intent(AddOutfit.this,DolabMainViewActivity.class);
+        //startActivity(toMain);
+        //System.exit(0);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,10 @@ public class AddOutfit extends AppCompatActivity {
                     adding = new Outfit(0,topid,bottomid,shoeid);
                     myhandler.addOutfit(adding);
 
-                    Intent toMain = new Intent(AddOutfit.this,DolabMainViewActivity.class);
-                    startActivity(toMain);
-                    System.exit(0);
+                    //Intent toMain = new Intent(AddOutfit.this,DolabMainViewActivity.class);
+                    //startActivity(toMain);
+                    //System.exit(0);
+                    finish();
                 }
                 if (listCount == 1){
                     bottomid = adapter.getItem(position).getID();

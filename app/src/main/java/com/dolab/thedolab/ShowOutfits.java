@@ -37,9 +37,10 @@ public class ShowOutfits extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent toMain = new Intent(ShowOutfits.this,DolabMainViewActivity.class);
-        startActivity(toMain);
-        System.exit(0);
+        finish();
+        //Intent toMain = new Intent(ShowOutfits.this,DolabMainViewActivity.class);
+        //startActivity(toMain);
+        //System.exit(0);
     }
 
     @Override
@@ -106,7 +107,9 @@ public class ShowOutfits extends AppCompatActivity {
                 outfiter.deleteOutById(outfitsSource.get(trueindexer).id);
                 Intent ree = new Intent(ShowOutfits.this,ShowOutfits.class);
                 startActivity(ree);
-                System.exit(0);}
+               //System.exit(0);
+                    finish();
+                    }
             }
         });
         realRandom.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +120,7 @@ public class ShowOutfits extends AppCompatActivity {
                 if (tempS.getTopID() == -1 || tempS.getBottomID() == -1 || tempS.getShoeID() == -1)
                 {
                     Context context = getApplicationContext();
-                    CharSequence text = "روح شوف امك عايزة إيه";
+                    CharSequence text = "";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);

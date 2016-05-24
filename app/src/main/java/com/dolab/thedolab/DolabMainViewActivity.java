@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -106,7 +107,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent x = new Intent(getApplicationContext(), ShowOutfits.class);
                 startActivity(x);
-                System.exit(0);
+               // System.exit(0);
             }
         });
         FloatingActionButton newo = (FloatingActionButton) findViewById(R.id.newo);
@@ -115,7 +116,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent opener = new Intent(getApplicationContext(),AddOutfit.class);
                 startActivity(opener);
-                System.exit(0);
+                //System.exit(0);
             }
         });
         //controller.addClothes(0, 1, "note", 10, getApplicationContext());

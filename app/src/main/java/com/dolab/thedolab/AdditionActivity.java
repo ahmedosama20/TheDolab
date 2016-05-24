@@ -61,21 +61,29 @@ public class AdditionActivity extends AppCompatActivity {
         arraylists.add(new ArrayList()); // bottom
         arraylists.add(new ArrayList()); // shoe
 
-        arraylists.get(0).add(R.drawable.blouse);
-        arraylists.get(0).add(R.drawable.cardigan);
+        arraylists.get(0).add(R.drawable.tshirt);
+        arraylists.get(0).add(R.drawable.sweatshirt);
         arraylists.get(0).add(R.drawable.jacket);
         arraylists.get(0).add(R.drawable.shirt);
-        arraylists.get(0).add(R.drawable.sweatshirt);
-        arraylists.get(0).add(R.drawable.tshirt);
-        arraylists.get(1).add(R.drawable.jeans);
-        arraylists.get(1).add(R.drawable.pants);
+        arraylists.get(0).add(R.drawable.blouse);
+        arraylists.get(0).add(R.drawable.cardigan);
+
+
+
         arraylists.get(1).add(R.drawable.shorrt);
+        arraylists.get(1).add(R.drawable.jeans);
         arraylists.get(1).add(R.drawable.skirt);
-        arraylists.get(2).add(R.drawable.boot);
-        arraylists.get(2).add(R.drawable.clasicshoe);
+        arraylists.get(1).add(R.drawable.pants);
+
+        arraylists.get(2).add(R.drawable.sneakers);
         arraylists.get(2).add(R.drawable.flipflops);
         arraylists.get(2).add(R.drawable.sandal);
-        arraylists.get(2).add(R.drawable.sneakers);
+        arraylists.get(2).add(R.drawable.clasicshoe);
+        arraylists.get(2).add(R.drawable.boot);
+
+
+
+
 
         HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.addclothesScrollView);
 
