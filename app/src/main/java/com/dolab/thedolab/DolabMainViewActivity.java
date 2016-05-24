@@ -180,6 +180,7 @@ public class DolabMainViewActivity extends AppCompatActivity {
         Controller controller;
         MyListAdapter adapter;
         ListView topslistview;
+
         DBHandler dEdit;
         FloatingActionButton del;
         ColorStateList x ;
