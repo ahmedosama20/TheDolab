@@ -66,5 +66,7 @@ tools:context="com.dolab.thedolab.DolabMainViewActivity">
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_delete" />
+        android:src="@android:drawable/ic_delete"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
 </android.support.design.widget.CoordinatorLayout>

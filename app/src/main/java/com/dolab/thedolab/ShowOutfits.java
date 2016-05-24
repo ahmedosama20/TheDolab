@@ -103,13 +103,38 @@ public class ShowOutfits extends AppCompatActivity {
         deleter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clicky){
+                if (clicky && topImage.getDrawable() != null){
                 outfiter.deleteOutById(outfitsSource.get(trueindexer).id);
-                Intent ree = new Intent(ShowOutfits.this,ShowOutfits.class);
-                startActivity(ree);
+                    indexer = 0;
+                    trueindexer = 0;
+                    outfitsSource = outfiter.getAllOutfits();
+                    topImage.setImageDrawable(null);
+                    topColor.setImageDrawable(null);
+                    bottomImage.setImageDrawable(null);
+                    bottomColor.setImageDrawable(null);
+                    shoeImage.setImageDrawable(null);
+                    shoeColor.setImageDrawable(null);
+                    if (outfitsSource.size() > 0){
+                        int size = outfitsSource.size();
+                        if (indexer == size)
+                            indexer = 0;
+                        if (indexer < 0 && size > 1)
+                            indexer = 1;
+                        if (indexer < 0 && size == 1)
+                            indexer = 0;
+                        if (size > 0) {
+                            setTop(outfitsSource.get(indexer).getTopID());
+                            setBottom(outfitsSource.get(indexer).getBottomID());
+                            setShoe(outfitsSource.get(indexer).getShoeID());
+                            indexer++;
+                            trueindexer = indexer - 1 ;
+                            clicky = true;
+                        }
+                //Intent ree = new Intent(ShowOutfits.this,ShowOutfits.class);
+               // startActivity(ree);
                //System.exit(0);
-                    finish();
-                    }
+                 //   finish();
+                    }}
             }
         });
         realRandom.setOnClickListener(new View.OnClickListener() {

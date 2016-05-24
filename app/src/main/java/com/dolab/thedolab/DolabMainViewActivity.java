@@ -1,7 +1,9 @@
 package com.dolab.thedolab;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -89,11 +91,19 @@ public class DolabMainViewActivity extends AppCompatActivity {
         });
         FloatingActionButton del = (FloatingActionButton) findViewById(R.id.dele);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final ColorStateList x = fab.getBackgroundTintList();
         FloatingActionButton ran = (FloatingActionButton) findViewById(R.id.ran);
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 delete = !delete;
+                if(delete) {
+                    v.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                }
+                else
+                {
+                    v.setBackgroundTintList(x);
+                }
             }
         });
         fab.setOnClickListener(new View.OnClickListener() {
@@ -159,13 +169,23 @@ public class DolabMainViewActivity extends AppCompatActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+        @Override
+        public void onAttach(Context context) {
+            super.onAttach(context);
+            Activity mact = (Activity) context;
+            del = (FloatingActionButton) mact.findViewById(R.id.dele);
+            x = ((FloatingActionButton) mact.findViewById(R.id.fab)).getBackgroundTintList();
+        }
+
         Controller controller;
         MyListAdapter adapter;
         ListView topslistview;
         DBHandler dEdit;
-
+        FloatingActionButton del;
+        ColorStateList x ;
         @Override
         public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
             super.onViewCreated(view, savedInstanceState);
             int sec = getArguments().getInt(ARG_SECTION_NUMBER);
             adapter = controller.getListAdapter(getActivity().getApplicationContext(), R.layout.upper_list_item, getResources(), sec);
@@ -195,7 +215,8 @@ public class DolabMainViewActivity extends AppCompatActivity {
                             dEdit.deleteBottomId(adapter.getItem(position).getID());
                         if (mPosition == 2)
                             dEdit.deleteShoeId(adapter.getItem(position).getID());
-                        delete = !delete;
+                        delete = false;
+                        del.setBackgroundTintList(x);
                         adapter = controller.getListAdapter(getActivity(), R.layout.upper_list_item,getResources(),mPosition);
                         topslistview.setAdapter(adapter);
                     }
